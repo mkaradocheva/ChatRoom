@@ -1,33 +1,17 @@
-<header class="rounded">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" routerLink="/">ChatRoom</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/rooms">Rooms</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/rules">Our Rules</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Register</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>  
+<div class="w3-top border">
+  <div class="w3-bar w3-black w3-card">
+    <a routerLink="/" class="w3-bar-item w3-button w3-padding-large">Начало</a>
+    <a routerLink="/rooms" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Стаи</a>
+    <div *ngIf="true">
+      <a routerLink="/register" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Регистрация</a>
+      <a routerLink="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Влизане</a>
+    </div>
+    <div *ngIf="false">
+      <a routerLink="/createroom" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Създай нова стая
+      </a>
+      <a routerLink="/myprofile" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Моят профил</a>
+      <a routerLink="/myrooms" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Моите стаи</a>
+      <a routerLink="/logout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Изход</a>
+    </div>
+  </div>
+</div>

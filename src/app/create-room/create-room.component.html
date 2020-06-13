@@ -1,0 +1,39 @@
+<div id="createRoom">
+  <hr />
+  <div class="container p-3">
+    <div id="create-row" class="row justify-content-center align-items-center">
+      <div id="create-column" class="col-md-6">
+        <div id="create-box" class="col-md-12">
+          <form [formGroup]="form" id="create-form" class="form" (submit)="create()">
+            <h3 class="text-center text-info">Добави нова стая</h3>
+            <hr />
+            <div class="form-group">
+              <label for="name" class="text-info">Име:</label><br>
+              <input type="text" name="name" id="name" class="form-control" placeholder="Име на стаята">
+            </div>
+            <!-- <template *ngIf=false>
+              <div class="alert alert-danger" v-if="!$v.name.required">Name is required.</div>
+              <div class="alert alert-danger" v-else-if="!$v.name.minLength">Username must have at least
+                {{  }} characters.</div>
+            </template> -->
+
+            <div class="form-group">
+              <label for="description" class="text-info">Описание:</label><br>
+              <input type="text" name="description" id="description" class="form-control"
+                placeholder="Описание на темата">
+            </div>
+            <!-- <template *ngIf=false>
+              <div class="alert alert-danger" v-if="!$v.description.required">Description is required.</div>
+              <div class="alert alert-danger" v-else-if="!$v.name.minLength">Username must have at least
+                {{ $v.description.$params.minLength.min }} characters.</div>
+            </template> -->
+
+            <div class="form-group">
+              <input type="submit" name="submit" class="btn btn-info btn-md" value="Създай">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
