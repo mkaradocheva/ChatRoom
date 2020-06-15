@@ -7,20 +7,19 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-room.component.scss']
 })
 export class CreateRoomComponent implements OnInit {
-  form;
+  createForm;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
+    this.createForm = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', Validators.required]
   });
 }
 
-create(){
-  console.log(this.form);
-}
-
+  get f(){
+    return this.createForm.controls;
+  }
 }
 

@@ -2,16 +2,16 @@
   <div class="w3-bar w3-black w3-card">
     <a routerLink="/" class="w3-bar-item w3-button w3-padding-large">Начало</a>
     <a routerLink="/rooms" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Стаи</a>
-    <div *ngIf="true">
+    <div *ngIf="!isAuth">
       <a routerLink="/register" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Регистрация</a>
       <a routerLink="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Влизане</a>
     </div>
-    <div *ngIf="false">
+    <div *ngIf="isAuth">
       <a routerLink="/createroom" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Създай нова стая
       </a>
       <a routerLink="/myprofile" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Моят профил</a>
       <a routerLink="/myrooms" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Моите стаи</a>
-      <a routerLink="/logout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Изход</a>
+      <a (click)="logout()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Изход</a>
     </div>
   </div>
 </div>

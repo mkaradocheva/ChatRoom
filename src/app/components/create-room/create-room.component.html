@@ -4,7 +4,7 @@
     <div id="create-row" class="row justify-content-center align-items-center">
       <div id="create-column" class="col-md-6">
         <div id="create-box" class="col-md-12">
-          <form [formGroup]="form" fxLayout="column" id="create-form" class="form" (submit)="create()">
+          <form [formGroup]="createForm" fxLayout="column" id="create-form" class="form">
             <h3 class="text-center text-info">Добави нова стая</h3>
             <hr />
             <mat-form-field>
@@ -13,11 +13,6 @@
               <mat-hint>Въведете име на стаята.</mat-hint>
               <mat-error></mat-error>
             </mat-form-field>
-            <!-- <template *ngIf=false>
-              <div class="alert alert-danger" v-if="!$v.name.required">Name is required.</div>
-              <div class="alert alert-danger" v-else-if="!$v.name.minLength">Username must have at least
-                {{  }} characters.</div>
-            </template> -->
 
             <mat-form-field>
               <mat-icon matSuffix>description</mat-icon>
@@ -26,11 +21,6 @@
               <mat-hint>Въведете описание на стаята.</mat-hint>
               <mat-error></mat-error>
             </mat-form-field>
-            <!-- <template *ngIf=false>
-              <div class="alert alert-danger" v-if="!$v.description.required">Description is required.</div>
-              <div class="alert alert-danger" v-else-if="!$v.name.minLength">Username must have at least
-                {{ $v.description.$params.minLength.min }} characters.</div>
-            </template> -->
 
             <div class="form-group">
               <input type="submit" name="submit" class="btn btn-info btn-md" value="Създай">

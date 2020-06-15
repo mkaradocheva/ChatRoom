@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import {Router, ActivatedRoute} from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { auth } from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,9 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  submitted = false;
-  returnUrl: string;
 
   constructor(private fb: FormBuilder,
-    route: ActivatedRoute,
-    router: Router) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,6 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-
+    this.authService.login(this.f.email.value, this.f.password.value);
   }
 }

@@ -4,23 +4,21 @@ import { } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from '../app/components/header/header.component';
+import { HomeComponent } from '../app/components/home/home.component';
+import { LoginComponent } from '../app/components/auth/login/login.component';
+import { RegisterComponent } from '../app/components/auth/register/register.component';
+import { FooterComponent } from '../app/components/footer/footer.component';
+import { RoomsComponent } from '../app/components/rooms/rooms.component';
+import { CreateRoomComponent } from '../app/components/create-room/create-room.component';
+import { MyroomsComponent } from '../app/components/myrooms/myrooms.component';
+import { ProfileComponent } from '../app/components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FooterComponent } from './footer/footer.component';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
-import { RoomsComponent } from './rooms/rooms.component';
-import { CreateRoomComponent } from './create-room/create-room.component';
-import { MyroomsComponent } from './myrooms/myrooms.component';
-import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { MyFirestoreModule } from './firebase.module';
+import { RoomComponent } from './components/room/room.component';
 
 @NgModule({
   declarations: [
@@ -34,18 +32,17 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     RoomsComponent,
     CreateRoomComponent,
     MyroomsComponent,
-    ProfileComponent
+    ProfileComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
-    AngularFirestoreModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MyFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
