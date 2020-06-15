@@ -4,24 +4,28 @@
     <div id="create-row" class="row justify-content-center align-items-center">
       <div id="create-column" class="col-md-6">
         <div id="create-box" class="col-md-12">
-          <form [formGroup]="form" id="create-form" class="form" (submit)="create()">
+          <form [formGroup]="form" fxLayout="column" id="create-form" class="form" (submit)="create()">
             <h3 class="text-center text-info">Добави нова стая</h3>
             <hr />
-            <div class="form-group">
-              <label for="name" class="text-info">Име:</label><br>
-              <input type="text" name="name" id="name" class="form-control" placeholder="Име на стаята">
-            </div>
+            <mat-form-field>
+              <mat-icon matSuffix>label</mat-icon>
+              <input type="text" formControlName="name" id="name" class="form-control" matInput placeholder="Име">
+              <mat-hint>Въведете име на стаята.</mat-hint>
+              <mat-error></mat-error>
+            </mat-form-field>
             <!-- <template *ngIf=false>
               <div class="alert alert-danger" v-if="!$v.name.required">Name is required.</div>
               <div class="alert alert-danger" v-else-if="!$v.name.minLength">Username must have at least
                 {{  }} characters.</div>
             </template> -->
 
-            <div class="form-group">
-              <label for="description" class="text-info">Описание:</label><br>
-              <input type="text" name="description" id="description" class="form-control"
-                placeholder="Описание на темата">
-            </div>
+            <mat-form-field>
+              <mat-icon matSuffix>description</mat-icon>
+              <input type="text" formControlName="description" id="description" class="form-control" matInput
+                placeholder="Описание">
+              <mat-hint>Въведете описание на стаята.</mat-hint>
+              <mat-error></mat-error>
+            </mat-form-field>
             <!-- <template *ngIf=false>
               <div class="alert alert-danger" v-if="!$v.description.required">Description is required.</div>
               <div class="alert alert-danger" v-else-if="!$v.name.minLength">Username must have at least
