@@ -1,1 +1,7 @@
-<div>room works!</div>>
+<section class="room">
+  <app-room-post-question></app-room-post-question>
+  <div fxLayout="column" fxLayoutGap="20px">
+    <app-room-question fxLayoutAlign="center center" *ngFor="let question of roomQuestions" [questionInfo]="question">
+    </app-room-question>
+  </div>
+</section>

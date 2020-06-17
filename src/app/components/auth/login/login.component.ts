@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { auth } from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onSubmit(){
-    this.authService.login(this.f.email.value, this.f.password.value);
+  login(){
+    let {email, password} = this.loginForm.value;
+    this.authService.login(email, password);
   }
 }

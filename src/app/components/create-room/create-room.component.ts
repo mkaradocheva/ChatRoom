@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { RoomsService } from 'src/app/core/services/rooms.service';
 
 @Component({
   selector: 'app-create-room',
@@ -9,7 +10,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class CreateRoomComponent implements OnInit {
   createForm;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private roomsService: RoomsService
+    ) { }
 
   ngOnInit(): void {
     this.createForm = this.fb.group({
@@ -20,6 +24,12 @@ export class CreateRoomComponent implements OnInit {
 
   get f(){
     return this.createForm.controls;
+  }
+
+  createRoom(){
+    const {name, description} = this.createForm.value;
+
+    this.roomsService.addRoom({name, description});
   }
 }
 

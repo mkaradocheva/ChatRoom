@@ -1,6 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { RoomsService } from 'src/app/core/services/rooms.service';
+import { Question } from '../shared/models/question.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-room',
@@ -9,18 +11,27 @@ import { RoomsService } from 'src/app/core/services/rooms.service';
 })
 
 export class RoomComponent implements OnInit {
-
-    id: string;
+    roomQuestions: Question[];
+    roomQuestionsSub: Subscription;
+    roomId: string;
 
     constructor(private route: ActivatedRoute, 
         private roomService: RoomsService
         ){ }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe((params: Params) => {
+      this.roomId = params['id'];
+    });
+
+    this.roomService.fetchQuestionsForRoom(this.roomId);
+    this.roomQuestionsSub =  this.roomService.questionChanged.subscribe((questions) => {
+      this.roomQuestions = questions;
+    });
   }
 
-  enterRoom(id: string){
-    this.roomService.fetchRoomById(this.id);
+  ngOnDestroy(){
+    this.roomQuestionsSub.unsubscribe();
+    this.roomService.cancelSubscriptions();
   }
 }

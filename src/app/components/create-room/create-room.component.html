@@ -4,7 +4,7 @@
     <div id="create-row" class="row justify-content-center align-items-center">
       <div id="create-column" class="col-md-6">
         <div id="create-box" class="col-md-12">
-          <form [formGroup]="createForm" fxLayout="column" id="create-form" class="form">
+          <form (ngSubmit)="createRoom()" [formGroup]="createForm" fxLayout="column" id="create-form" class="form">
             <h3 class="text-center text-info">Добави нова стая</h3>
             <hr />
             <mat-form-field>
@@ -23,7 +23,8 @@
             </mat-form-field>
 
             <div class="form-group">
-              <input type="submit" name="submit" class="btn btn-info btn-md" value="Създай">
+              <button [disabled]="createForm.invalid" mat-raised-button type="submit" color="primary">Създай
+                стая</button>
             </div>
           </form>
         </div>

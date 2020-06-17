@@ -4,8 +4,7 @@
     <div id="login-row" class="row justify-content-center align-items-center">
       <div id="login-column" class="col-md-6">
         <div id="login-box" fxLayout="column" fxLayoutAlign="center center" class="col-md-12">
-          <form [formGroup]="loginForm" fxLayout="column" id="login-form" class="form" (submit)="onSubmit()"
-            method="post">
+          <form [formGroup]="loginForm" fxLayout="column" id="login-form" class="form" (submit)="login()" method="post">
             <h1 class="text-center text-info">Влизане</h1>
             <mat-form-field>
               <mat-icon matSuffix>email</mat-icon>
@@ -13,9 +12,6 @@
               <mat-hint>Въведете своя имейл адрес.</mat-hint>
               <mat-error></mat-error>
             </mat-form-field>
-            <!-- <div class="alert alert-danger" *ngIf="f.email.errors?.required && f.email.touched">
-              Това поле е задължително!
-            </div> -->
             <mat-form-field>
               <mat-icon matSuffix>https</mat-icon>
               <input type="password" formControlName="password" id="password" class="form-control" matInput
