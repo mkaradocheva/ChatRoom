@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RoomsService } from 'src/app/core/services/rooms.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-create-room',
@@ -12,7 +13,8 @@ export class CreateRoomComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private roomsService: RoomsService
+    private roomsService: RoomsService,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
@@ -28,8 +30,9 @@ export class CreateRoomComponent implements OnInit {
 
   createRoom(){
     const {name, description} = this.createForm.value;
+    const author = this.authService.getCurrentUser();
 
-    this.roomsService.addRoom({name, description});
+    this.roomsService.addRoom({name, description, author});
   }
 }
 

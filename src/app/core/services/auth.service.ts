@@ -37,7 +37,7 @@ export class AuthService {
     register(email: string, password: string) {
         this.afAuth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
         })
         .catch((error) => {
             this.snackbar.open(error.message, 'Undo', {
@@ -63,5 +63,9 @@ export class AuthService {
         this.afAuth.signOut();
         localStorage.clear();
         this.router.navigate(['/']);
+    }
+
+    getCurrentUser(){
+        return localStorage.getItem('email');
     }
 }

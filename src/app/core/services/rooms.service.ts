@@ -9,6 +9,7 @@ import { Room } from 'src/app/components/shared/models/room.model';
 import { Question } from 'src/app/components/shared/models/question.model';
 import { ListRoom } from 'src/app/components/shared/models/list-rooms.model';
 import { CreateRoom } from 'src/app/components/shared/models/create-room.model';
+import { MyRoom } from 'src/app/components/shared/models/my-room.model';
 
 @Injectable({
     providedIn: 'root'
@@ -17,11 +18,14 @@ export class RoomsService {
     private _room: Room;
     private _questionsForRoom: Question[] = [];
     private _allRooms: ListRoom[] = [];
+    private _myRooms: MyRoom[] = [];
     private _roomSubscriptions: Subscription[] = [];
+    private _myRoomsSubscriptions: Subscription[] = [];
 
     roomChanged = new Subject<Room>();
     questionChanged = new Subject<Question[]>();
     allRoomsChanged = new Subject<ListRoom[]>();
+    myRoomsChanged = new Subject<MyRoom[]>();
 
     constructor(
         private afDb: AngularFirestore,
@@ -32,32 +36,27 @@ export class RoomsService {
     ngOnInit(){
     }
 
-    fetchRoomById(roomId: string){
-        this._roomSubscriptions.push(this.afDb
-            .collection<Room>('rooms',
-            (ref) => ref.where('id', '==', roomId).limit(1))
-            .snapshotChanges()
-            .pipe(
-                map(docArray => {
-                    return docArray.map((doc) => {
-                        return {
-                            id: doc.payload.doc.id,
-                            ...doc.payload.doc.data()
-                        }
-                    })
-                })
-            ).subscribe((rooms) => {
-                if(rooms.length > 0){
-                    this._room = rooms[0];
-                    this.roomChanged.next({...this._room});
-                    this.router.navigate(['/rooms', this._room.id]);
-                } else {
-                    this.snackbar.open("No such room exists!", "Close", {
-                        duration: 3000
-                    });
-                }
-            }))
+    fetchRoomByName(roomName: string){
+        this._roomSubscriptions.push(this.afDb.collection<Room>('rooms', (ref) => ref
+        .where('name', '==', roomName))
+        .valueChanges()
+        .subscribe((rooms) => {
+          this._room = rooms[0];
+        //   this.allRoomsChanged.next([...this._room]);
+        })
+      )
     }
+
+    fetchMyRooms(author: string) {
+        this._myRoomsSubscriptions.push(this.afDb.collection<Room>('rooms', (ref) => ref
+          .where('author', '==', author))
+          .valueChanges()
+          .subscribe((rooms) => {
+            this._myRooms = rooms;
+            this.myRoomsChanged.next([...this._myRooms]);
+          })
+        )
+      }
 
     fetchAllRooms(){
         this._roomSubscriptions.push(this.afDb.collection<ListRoom>('rooms')
@@ -68,9 +67,9 @@ export class RoomsService {
         }));
     }
 
-    fetchQuestionsForRoom(roomId: string){
+    fetchQuestionsForRoom(roomName: string){
         this._roomSubscriptions.push(this.afDb.collection<Question>('questions', (ref) => ref
-        .where('roomId', '==', roomId)
+        .where('roomName', '==', roomName)
         .orderBy('createdOn', 'asc'))
         .valueChanges()
         .subscribe((questions) => {
@@ -82,7 +81,7 @@ export class RoomsService {
     addQuestion(payload: Question){
         this.afDb.collection<Question>('questions').add(payload)
         .then((data) => {
-            this.fetchQuestionsForRoom(payload.roomId);
+            this.fetchQuestionsForRoom(payload.username);
             this.snackbar.open('Question added!', 'Undo', {
                 duration: 2000
             });
@@ -107,7 +106,7 @@ export class RoomsService {
                     this.snackbar.open(`Room with name: ${payload.name} created!`, 'Undo', {
                         duration: 2000
                     });
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/rooms']);
                 })
                 .catch((err) => {
                     console.log(err);

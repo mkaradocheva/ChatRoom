@@ -12,7 +12,6 @@ import { FooterComponent } from '../app/components/footer/footer.component';
 import { RoomsComponent } from '../app/components/rooms/rooms.component';
 import { CreateRoomComponent } from '../app/components/create-room/create-room.component';
 import { MyroomsComponent } from '../app/components/myrooms/myrooms.component';
-import { ProfileComponent } from '../app/components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
@@ -34,7 +33,6 @@ import { RoomQuestionComponent } from './components/room/room-question/room-post
     RoomsComponent,
     CreateRoomComponent,
     MyroomsComponent,
-    ProfileComponent,
     RoomComponent,
     RoomPostQuestionComponent,
     RoomQuestionComponent

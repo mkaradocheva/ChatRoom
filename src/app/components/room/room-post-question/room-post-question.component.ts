@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RoomsService } from 'src/app/core/services/rooms.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-room-post-question',
@@ -10,12 +11,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class RoomPostQuestionComponent implements OnInit {
   questionForm: FormGroup;
-  roomId: string;
+  roomName: string;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private roomsService: RoomsService
+    private roomsService: RoomsService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -23,18 +25,21 @@ export class RoomPostQuestionComponent implements OnInit {
       text: [ null, [ Validators.required, Validators.minLength(10), Validators.maxLength(70) ] ]
     });
     this.route.params.subscribe((params: Params) => {
-      this.roomId = params['id'];
+      this.roomName = params['name'];
     });
   }
 
   postQuestion() {
     const text = this.questionForm.value.text;
-    const email = localStorage.getItem('email');
+    const currentUser = this.authService.getCurrentUser();
+
+    console.log(this.roomName)
+
     this.roomsService.addQuestion({ 
       text: text, 
       createdOn: new Date(), 
-      roomId: this.roomId, 
-      username: email 
+      roomName: this.roomName, 
+      username: currentUser
     });
 
     this.questionForm.reset();

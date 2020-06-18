@@ -5,7 +5,7 @@
       <div id="create-column" class="col-md-6">
         <div id="create-box" class="col-md-12">
           <form (ngSubmit)="createRoom()" [formGroup]="createForm" fxLayout="column" id="create-form" class="form">
-            <h3 class="text-center text-info">Добави нова стая</h3>
+            <h1 class="text-center text-info">Добави нова стая</h1>
             <hr />
             <mat-form-field>
               <mat-icon matSuffix>label</mat-icon>
@@ -22,7 +22,7 @@
               <mat-error></mat-error>
             </mat-form-field>
 
-            <div class="form-group">
+            <div class="form-group p-2">
               <button [disabled]="createForm.invalid" mat-raised-button type="submit" color="primary">Създай
                 стая</button>
             </div>

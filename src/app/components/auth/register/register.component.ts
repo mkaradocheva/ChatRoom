@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ConfirmPasswordValidator } from 'src/app/core/validators/confirm-password.validator';
 
 @Component({
   selector: "app-register",
@@ -18,15 +19,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required,
-    ]],
       email: ['', [Validators.required,
       Validators.email]],
       password: ['', [Validators.required,
           Validators.minLength(this.passwordMinLength)
       ]],
       repeatPassword: ['',]
-    });
+    }, {
+       validator: ConfirmPasswordValidator.MatchPassword 
+      });
   }
   
   get f(){

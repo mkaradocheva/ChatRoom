@@ -1,10 +1,12 @@
-<div fxLayoutAlign="center center"> -->
-  <mat-form-field fxFlex="40%">
-    <input matInput placeholder="Filter">
-  </mat-form-field>
-</div>
-<mat-table [dataSource]="dataSource" matSort>
-  <!-- <ng-container matColumnDef="id">
+<div class="p-5">
+  <div fxLayoutAlign="center center">
+    <mat-form-field (keyup)="applyFilter($event)" fxFlex="40%">
+      <input matInput placeholder="Търсене">
+    </mat-form-field>
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef>
       No
     </mat-header-cell>
@@ -13,32 +15,32 @@
     </mat-cell>
   </ng-container> -->
 
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      Име на стаята
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      {{element.name}}
-    </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Име на стаята
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.name}}
+      </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="description">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      Описание
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      {{element.description}}
-    </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Описание
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.description}}
+      </mat-cell>
+    </ng-container>
 
-
-  <ng-container matColumnDef="button">
-    <mat-header-cell *matHeaderCellDef> Влизане </mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <button mat-raised-button (click)="enterRoom('nurHEPmvqbPqKVz7EAME')">Влез</button>
-    </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <ng-container matColumnDef="button">
+      <mat-header-cell *matHeaderCellDef> Влизане </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-raised-button [routerLink]="['/rooms', element.name]">Влез</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

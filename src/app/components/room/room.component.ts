@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class RoomComponent implements OnInit {
     roomQuestions: Question[];
     roomQuestionsSub: Subscription;
-    roomId: string;
+    roomName: string;
 
     constructor(private route: ActivatedRoute, 
         private roomService: RoomsService
@@ -21,10 +21,10 @@ export class RoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.roomId = params['id'];
+      this.roomName = params['name'];
     });
 
-    this.roomService.fetchQuestionsForRoom(this.roomId);
+    this.roomService.fetchQuestionsForRoom(this.roomName);
     this.roomQuestionsSub =  this.roomService.questionChanged.subscribe((questions) => {
       this.roomQuestions = questions;
     });
