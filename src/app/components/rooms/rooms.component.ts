@@ -56,6 +56,7 @@ export class RoomsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   enterRoom(name: string){
+    console.log(this.isAuth)
     if(this.isAuth){
       this.roomService.fetchRoomByName(name);
     } else {

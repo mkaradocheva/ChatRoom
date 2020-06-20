@@ -30,6 +30,10 @@ export class RoomComponent implements OnInit {
     });
   }
 
+  deleteRoom(roomName: string){
+    this.deleteRoom(roomName);
+  }
+
   ngOnDestroy(){
     this.roomQuestionsSub.unsubscribe();
     this.roomService.cancelSubscriptions();

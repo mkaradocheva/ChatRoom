@@ -7,7 +7,7 @@
     <mat-error *ngIf="questionForm.get('text').hasError('required')">Моля, задайте въпрос.</mat-error>
     <mat-error *ngIf="questionForm.get('text').hasError('minlength')">Въпросът трябва да бъде поне 10 символа.
     </mat-error>
-    <mat-error *ngIf="questionForm.get('text').hasError('maxlength')">Въпросът не трябва да бъде повече от 70 символа.
+    <mat-error *ngIf="questionForm.get('text').hasError('maxlength')">Въпросът не трябва да бъде повече от 150 символа.
     </mat-error>
   </mat-form-field>
   <button [disabled]="questionForm.invalid" type="submit" mat-fab color="primary">Изпрати</button>

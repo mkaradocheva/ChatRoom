@@ -10,7 +10,7 @@
           <p class="card-text">{{room.description}}</p>
           <div class="d-flex justify-content-between">
             <a [routerLink]="['/rooms', room.name]" class="btn btn-success">Влез</a>
-            <a routerLink="/rooms/delete/:name" class="btn btn-secondary">Изтрий</a>
+            <button (click)="deleteRoom('Икономика')" class="btn btn-secondary">Изтрий</button>
           </div>
         </div>
       </div>

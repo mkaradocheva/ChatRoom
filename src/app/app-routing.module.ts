@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: 'createroom', component: CreateRoomComponent},
   {path: 'myrooms', component: MyroomsComponent},
   {path: 'rooms', component: RoomsComponent},
-  {path: 'rooms/:name', component: RoomComponent}
+  {path: 'rooms/:name', component: RoomComponent},
+  {path: 'rooms/:name/delete', component: RoomComponent}
 ];
 
 @NgModule({

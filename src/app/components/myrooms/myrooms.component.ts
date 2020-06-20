@@ -23,4 +23,8 @@ export class MyroomsComponent implements OnInit {
     });
   }
 
+  deleteRoom(roomName: string){
+    this.roomsService.deleteRoom(roomName);
+  }
+
 }

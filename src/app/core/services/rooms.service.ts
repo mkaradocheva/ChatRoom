@@ -115,6 +115,9 @@ export class RoomsService {
         }))
     }
 
+    deleteRoom(roomName: string){
+    }
+
     cancelSubscriptions(){
         this._roomSubscriptions.forEach((s) => s.unsubscribe());
     }

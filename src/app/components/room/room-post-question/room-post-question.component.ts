@@ -22,7 +22,10 @@ export class RoomPostQuestionComponent implements OnInit {
 
   ngOnInit() {
     this.questionForm = this.fb.group({
-      text: [ null, [ Validators.required, Validators.minLength(10), Validators.maxLength(70) ] ]
+      text: [ null, [ Validators.required, 
+        Validators.minLength(10), 
+        Validators.maxLength(150) 
+      ] ]
     });
     this.route.params.subscribe((params: Params) => {
       this.roomName = params['name'];
