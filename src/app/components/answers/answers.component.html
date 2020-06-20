@@ -2,7 +2,7 @@
   <app-answers-post-answer></app-answers-post-answer>
   <h2 style="text-align:center">{{question}}</h2>
   <div fxLayout="column" fxLayoutGap="20px">
-    <app-answers-answer fxLayoutAlign="center center" *ngFor="let answer of roomQuestions" [questionInfo]="question">
+    <app-answers-answer fxLayoutAlign="center center" *ngFor="let answer of questionAnswers">
     </app-answers-answer>
   </div>
 </section>

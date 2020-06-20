@@ -11,7 +11,6 @@ import { RegisterComponent } from '../app/components/auth/register/register.comp
 import { FooterComponent } from '../app/components/footer/footer.component';
 import { RoomsComponent } from '../app/components/rooms/rooms.component';
 import { CreateRoomComponent } from '../app/components/create-room/create-room.component';
-import { MyroomsComponent } from '../app/components/myrooms/myrooms.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
@@ -22,6 +21,8 @@ import { RoomPostQuestionComponent } from './components/room/room-post-question/
 import { RoomQuestionComponent } from './components/room/room-question/room-question.component';
 import { AnswersComponent } from './components/answers/answers.component';
 import { AnswersPostAnswerComponent } from './components/answers/answers-post-answer/answers-post-answer.component';
+import { AnswersAnswerComponent } from './components/answers/answers-answer/answers-answer.component';
+import { MyQuestionsComponent } from './components/my-questions/my-questions.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +35,13 @@ import { AnswersPostAnswerComponent } from './components/answers/answers-post-an
     FooterComponent,
     RoomsComponent,
     CreateRoomComponent,
-    MyroomsComponent,
+    MyQuestionsComponent,
     RoomComponent,
     RoomPostQuestionComponent,
     RoomQuestionComponent,
     AnswersComponent,
-    AnswersPostAnswerComponent
+    AnswersPostAnswerComponent,
+    AnswersAnswerComponent
   ],
   imports: [
     BrowserModule,

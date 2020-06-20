@@ -1,0 +1,28 @@
+<div class="container text-center p-4">
+  <hr />
+  <h1 class="text-center p-4">Моите въпроси</h1>
+  <hr />
+  <div class="row" *ngIf="questions.length > 0">
+    <div class="col-sm-6 p-2" *ngFor="let question of questions">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">{{question.text}}</h2>
+          <p class="card-text">В стая: {{question.roomName}}</p>
+          <div class="d-flex justify-content-center">
+            <a [routerLink]="['/rooms', question.roomName, 'answers', question.text]" class="btn btn-success">Виж
+              отговорите</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="questions.length == 0">
+    <p>Все още не сте задавали въпроси.
+      Намерете подходящата стая за Вашия въпрос в
+      <button mat-stroked-button color="primary" routerLink="/rooms">Стаи</button>
+    </p>
+    <p>Ако искате да създадете нова стая, влезте в
+      <button mat-stroked-button color="primary" routerLink="/createroom">Създаване на стая</button>
+    </p>
+  </div>
+</div>

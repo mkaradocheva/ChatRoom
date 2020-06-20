@@ -9,7 +9,6 @@ import { Room } from 'src/app/components/shared/models/room.model';
 import { Question } from 'src/app/components/shared/models/question.model';
 import { ListRoom } from 'src/app/components/shared/models/list-rooms.model';
 import { CreateRoom } from 'src/app/components/shared/models/create-room.model';
-import { MyRoom } from 'src/app/components/shared/models/my-room.model';
 
 @Injectable({
     providedIn: 'root'
@@ -18,14 +17,11 @@ export class RoomsService {
     private _room: Room;
     private _questionsForRoom: Question[] = [];
     private _allRooms: ListRoom[] = [];
-    private _myRooms: MyRoom[] = [];
     private _roomSubscriptions: Subscription[] = [];
-    private _myRoomsSubscriptions: Subscription[] = [];
 
     roomChanged = new Subject<Room>();
     questionChanged = new Subject<Question[]>();
     allRoomsChanged = new Subject<ListRoom[]>();
-    myRoomsChanged = new Subject<MyRoom[]>();
 
     constructor(
         private afDb: AngularFirestore,
@@ -46,17 +42,6 @@ export class RoomsService {
         })
       )
     }
-
-    fetchMyRooms(author: string) {
-        this._myRoomsSubscriptions.push(this.afDb.collection<Room>('rooms', (ref) => ref
-          .where('author', '==', author))
-          .valueChanges()
-          .subscribe((rooms) => {
-            this._myRooms = rooms;
-            this.myRoomsChanged.next([...this._myRooms]);
-          })
-        )
-      }
 
     fetchAllRooms(){
         this._roomSubscriptions.push(this.afDb.collection<ListRoom>('rooms')
@@ -116,6 +101,7 @@ export class RoomsService {
     }
 
     deleteRoom(roomName: string){
+        this.afDb.collection("rooms").doc(roomName).delete();
     }
 
     cancelSubscriptions(){
