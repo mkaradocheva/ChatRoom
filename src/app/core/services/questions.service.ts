@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { Question } from 'src/app/components/shared/models/question.model';
 import { MyQuestion } from 'src/app/components/shared/models/my-question.model';
+import { Answer } from 'src/app/components/shared/models/answer.model';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,10 @@ import { MyQuestion } from 'src/app/components/shared/models/my-question.model';
 export class QuestionsService {
     private _myQuestionsSubscriptions: Subscription[] = [];
     private _myQuestions: MyQuestion[] = [];
+    private _answersForQuestion: Answer[] = [];
+    private _questionSubscriptions: Subscription[] = [];
+    private questionFromDb: Question;
+
     myQuestionsChanged = new Subject<MyQuestion[]>();
 
     constructor(private afDb: AngularFirestore){
@@ -29,4 +34,22 @@ export class QuestionsService {
           })
         )
     }
+
+    fetchAnswersForQuestion(question: string){
+
+  //   fetchQuestionsForRoom(roomName: string){
+  //     this._roomSubscriptions.push(this.afDb.collection<Question>('questions', (ref) => ref
+  //     .where('roomName', '==', roomName)
+  //     .orderBy('createdOn', 'asc'))
+  //     .valueChanges()
+  //     .subscribe((questions) => {
+  //         this._questionsForRoom = questions;
+  //         this.questionChanged.next([...this._questionsForRoom]);
+  //     }));
+  }
+
+    // cancelSubscriptions(){
+    //   this._roomSubscriptions.forEach((s) => s.unsubscribe());
+
+    // }
 }

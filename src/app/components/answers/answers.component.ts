@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { RoomsService } from 'src/app/core/services/rooms.service';
 import { Subscription } from 'rxjs';
 import { Answer } from '../shared/models/answer.model';
+import { QuestionsService } from 'src/app/core/services/questions.service';
 
 @Component({
   selector: 'app-answers',
@@ -12,30 +13,28 @@ import { Answer } from '../shared/models/answer.model';
 
 export class AnswersComponent implements OnInit {
     questionAnswers: Answer[];
-    // roomQuestionsSub: Subscription;
+    questionAnswersSub: Subscription;
     question: string;
+    roomName: string;
 
     constructor(private route: ActivatedRoute, 
-        private roomService: RoomsService
+        private questionsService: QuestionsService
         ){ }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.question = params['question'];
+      this.roomName = params['name'];
     });
 
-    // this.roomService.fetchQuestionsForRoom(this.roomName);
+    this.questionsService.fetchAnswersForQuestion(this.question);
     // this.roomQuestionsSub =  this.roomService.questionChanged.subscribe((questions) => {
     //   this.roomQuestions = questions;
     // });
   }
 
-//   deleteRoom(roomName: string){
-//     this.deleteRoom(roomName);
-//   }
-
-//   ngOnDestroy(){
-//     this.roomQuestionsSub.unsubscribe();
-//     this.roomService.cancelSubscriptions();
-//   }
+  ngOnDestroy(){
+    this.questionAnswersSub.unsubscribe();
+    // this.roomService.cancelSubscriptions();
+  }
 }

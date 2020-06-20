@@ -1,4 +1,4 @@
-export class Question {
+export interface Question {
     createdOn: Date;
     text: string;
     roomName: string;
