@@ -19,7 +19,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { MyFirestoreModule } from './firebase.module';
 import { RoomComponent } from './components/room/room.component';
 import { RoomPostQuestionComponent } from './components/room/room-post-question/room-post-question.component';
-import { RoomQuestionComponent } from './components/room/room-question/room-post-question/room-question.component';
+import { RoomQuestionComponent } from './components/room/room-question/room-question.component';
+import { AnswersComponent } from './components/answers/answers.component';
+import { AnswersPostAnswerComponent } from './components/answers/answers-post-answer/answers-post-answer.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { RoomQuestionComponent } from './components/room/room-question/room-post
     MyroomsComponent,
     RoomComponent,
     RoomPostQuestionComponent,
-    RoomQuestionComponent
+    RoomQuestionComponent,
+    AnswersComponent,
+    AnswersPostAnswerComponent
   ],
   imports: [
     BrowserModule,

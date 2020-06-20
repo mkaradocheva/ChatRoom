@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-room-question',
@@ -7,9 +8,13 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class RoomQuestionComponent implements OnInit {
     @Input() questionInfo;
+    roomName: string;
 
-    constructor(){}
+    constructor(private route: ActivatedRoute){}
 
     ngOnInit(){
+        this.route.params.subscribe((params: Params) => {
+            this.roomName = params['name'];
+          });
     }
 }

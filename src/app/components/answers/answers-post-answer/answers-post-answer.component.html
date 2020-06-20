@@ -1,0 +1,14 @@
+<form (ngSubmit)="postAnswer()" [formGroup]="answerForm" fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field appearance="outline">
+    <mat-label>Изпрати отговор </mat-label>
+    <textarea formControlName="text" matInput placeholder="Напиши своя отговор" rows="5">
+          </textarea>
+    <mat-icon matSuffix>question_answer</mat-icon>
+    <mat-error *ngIf="answerForm.get('text').hasError('required')">Моля, напишете своя отговор.</mat-error>
+    <mat-error *ngIf="answerForm.get('text').hasError('minlength')">Отговорът трябва да бъде поне 10 символа.
+    </mat-error>
+    <mat-error *ngIf="answerForm.get('text').hasError('maxlength')">Отговорът не трябва да бъде повече от 150 символа.
+    </mat-error>
+  </mat-form-field>
+  <button [disabled]="answerForm.invalid" type="submit" mat-fab color="primary">Изпрати</button>
+</form>
