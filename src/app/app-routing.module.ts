@@ -9,6 +9,7 @@ import { CreateRoomComponent } from '../app/components/create-room/create-room.c
 import { MyQuestionsComponent } from '../app/components/my-questions/my-questions.component';
 import { RoomComponent } from './components/room/room.component';
 import { AnswersComponent } from './components/answers/answers.component';
+import { AuthGuard } from '../app/core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -16,10 +17,15 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'createroom', component: CreateRoomComponent },
   { path: 'myquestions', component: MyQuestionsComponent },
-  { path: 'rooms', component: RoomsComponent },
-  { path: 'rooms/:name', component: RoomComponent },
-  { path: 'rooms/:name/delete', component: RoomComponent },
-  { path: 'rooms/:name/answers/:question', component: AnswersComponent }
+  { path: 'rooms', children: [
+    { path: '', component: RoomsComponent },
+    { path: ':name', children: [
+      { path: '', component: RoomComponent },
+      { path: 'delete', component: RoomComponent },
+      { path: 'answers/:question', component: AnswersComponent }
+      ]
+    }
+  ]}
 ];
 
 @NgModule({
