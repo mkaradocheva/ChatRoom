@@ -65,15 +65,15 @@ export class RoomsService {
 
     addQuestion(payload: Question){
         this.afDb.collection<Question>('questions').add(payload)
-        .then((data) => {
-            this.fetchQuestionsForRoom(payload.username);
-            this.snackbar.open('Question added!', 'Undo', {
-                duration: 2000
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+      .then((data) => {
+        this.fetchQuestionsForRoom(payload.roomName);
+        this.snackbar.open('Question added!', 'Undo', {
+          duration: 2000
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }
 
     addRoom(payload: CreateRoom){
