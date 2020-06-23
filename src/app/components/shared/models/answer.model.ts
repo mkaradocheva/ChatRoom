@@ -1,6 +1,6 @@
 export interface Answer {
+  author: string;
     createdOn: Date;
-    text: string;
     question: string;
-    username: string;
+    text: string;
   }

@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, Subject } from 'rxjs';
-import { map } from 'rxjs/operators'
 
 import { Room } from 'src/app/components/shared/models/room.model';
 import { Question } from 'src/app/components/shared/models/question.model';

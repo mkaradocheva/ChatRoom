@@ -15,6 +15,7 @@ export class AnswersComponent implements OnInit {
     questionAnswers: Answer[];
     questionAnswersSub: Subscription;
     question: string;
+    questionId: string;
     roomName: string;
 
     constructor(private route: ActivatedRoute, 
@@ -28,13 +29,13 @@ export class AnswersComponent implements OnInit {
     });
 
     this.questionsService.fetchAnswersForQuestion(this.question);
-    // this.roomQuestionsSub =  this.roomService.questionChanged.subscribe((questions) => {
-    //   this.roomQuestions = questions;
-    // });
+    this.questionAnswersSub =  this.questionsService.answersChanged.subscribe((answers) => {
+      this.questionAnswers = answers;
+    }); 
   }
 
   ngOnDestroy(){
     this.questionAnswersSub.unsubscribe();
-    // this.roomService.cancelSubscriptions();
+    this.questionsService.cancelSubscriptions();
   }
 }

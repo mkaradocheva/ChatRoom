@@ -3,7 +3,7 @@
   <h2 style="text-align:center">
     {{roomName}} >> Въпрос: {{question}}</h2>
   <div fxLayout="column" fxLayoutGap="20px">
-    <app-answers-answer fxLayoutAlign="center center" *ngFor="let answer of questionAnswers">
+    <app-answers-answer fxLayoutAlign="center center" *ngFor="let answer of questionAnswers" [answerInfo]="answer">
     </app-answers-answer>
   </div>
 </section>

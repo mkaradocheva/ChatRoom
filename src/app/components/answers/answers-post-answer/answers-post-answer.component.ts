@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RoomsService } from 'src/app/core/services/rooms.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { QuestionsService } from 'src/app/core/services/questions.service';
 
 @Component({
   selector: 'app-answers-post-answer',
@@ -11,12 +11,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class AnswersPostAnswerComponent implements OnInit {
   answerForm: FormGroup;
-  roomName: string;
+  question: string;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private roomsService: RoomsService,
+    private questionsService: QuestionsService,
     private authService: AuthService
   ) { }
 
@@ -28,7 +28,7 @@ export class AnswersPostAnswerComponent implements OnInit {
       ] ]
     });
     this.route.params.subscribe((params: Params) => {
-      this.roomName = params['name'];
+      this.question = params['question'];
     });
   }
 
@@ -36,15 +36,13 @@ export class AnswersPostAnswerComponent implements OnInit {
     const text = this.answerForm.value.text;
     const currentUser = this.authService.getCurrentUser();
 
-    console.log(this.roomName)
+    this.questionsService.addAnswer({ 
+      text: text, 
+      createdOn: new Date(), 
+      question: this.question, 
+      author: currentUser
+    });
 
-    // this.roomsService.addQuestion({ 
-    //   text: text, 
-    //   createdOn: new Date(), 
-    //   roomName: this.roomName, 
-    //   username: currentUser
-    // });
-
-    // this.answerForm.reset();
+    this.answerForm.reset();
   }
 }
