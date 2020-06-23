@@ -36,8 +36,7 @@
     <ng-container matColumnDef="button">
       <mat-header-cell *matHeaderCellDef> Влизане </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button *ngIf="isAuth" mat-raised-button [routerLink]="['/rooms', element.name]">Влез</button>
-        <button *ngIf="!isAuth" mat-raised-button [routerLink]="['/login']">Влез</button>
+        <button mat-raised-button [routerLink]="['/rooms', element.name]">Влез</button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

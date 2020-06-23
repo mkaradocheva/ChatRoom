@@ -15,14 +15,13 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'createroom', component: CreateRoomComponent },
-  { path: 'myquestions', component: MyQuestionsComponent },
+  { path: 'createroom', component: CreateRoomComponent, canActivate: [AuthGuard] },
+  { path: 'myquestions', component: MyQuestionsComponent, canActivate: [AuthGuard] },
   { path: 'rooms', children: [
     { path: '', component: RoomsComponent },
     { path: ':name', children: [
-      { path: '', component: RoomComponent },
-      { path: 'delete', component: RoomComponent },
-      { path: 'answers/:question', component: AnswersComponent }
+      { path: '', component: RoomComponent, canActivate: [AuthGuard] },
+      { path: 'answers/:question', component: AnswersComponent,  canActivate: [AuthGuard]}
       ]
     }
   ]}
