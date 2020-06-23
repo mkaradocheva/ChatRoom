@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { RoomsService } from 'src/app/core/services/rooms.service';
 import { Subscription } from 'rxjs';
 import { Answer } from '../shared/models/answer.model';
 import { QuestionsService } from 'src/app/core/services/questions.service';

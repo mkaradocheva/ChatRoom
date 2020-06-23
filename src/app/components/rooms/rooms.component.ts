@@ -24,7 +24,8 @@ export class RoomsComponent implements OnInit, OnDestroy, AfterViewInit {
   isAuth: boolean = false;
   isAuthSub: Subscription;
 
-  constructor(private roomService: RoomsService,
+  constructor(
+     private roomService: RoomsService,
      private authService: AuthService,
      private router: Router
     ) { }

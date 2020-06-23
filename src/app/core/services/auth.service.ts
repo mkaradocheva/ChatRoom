@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {Router} from '@angular/router';
-import {Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -9,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AuthService {
     private _isAuth = false;
-
     isAuthChanged = new Subject<boolean>();
 
     constructor(
@@ -40,7 +39,7 @@ export class AuthService {
             this.router.navigate(['/']);
         })
         .catch((error) => {
-            this.snackbar.open(error.message, 'Undo', {
+            this.snackbar.open(error.message, 'OK', {
                 duration: 3000
             });
         });
@@ -53,7 +52,7 @@ export class AuthService {
             localStorage.setItem('email', userData.user.email);
         })
         .catch((error) => {
-            this.snackbar.open(error.message, 'Undo', {
+            this.snackbar.open(error.message, 'OK', {
                 duration: 3000
             });
         });

@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, Subject } from 'rxjs';
-
 import { Room } from 'src/app/components/shared/models/room.model';
 import { Question } from 'src/app/components/shared/models/question.model';
 import { ListRoom } from 'src/app/components/shared/models/list-rooms.model';
@@ -66,7 +65,7 @@ export class RoomsService {
         this.afDb.collection<Question>('questions').add(payload)
       .then((data) => {
         this.fetchQuestionsForRoom(payload.roomName);
-        this.snackbar.open('Question added!', 'Undo', {
+        this.snackbar.open('Question added!', 'OK', {
           duration: 2000
         });
       })
@@ -81,13 +80,13 @@ export class RoomsService {
         .valueChanges()
         .subscribe((data) => {
             if(data.length > 0){
-                this.snackbar.open(`Room with this name: ${payload.name} already exists!`, 'Undo', {
+                this.snackbar.open(`Room with this name: ${payload.name} already exists!`, 'OK', {
                     duration: 2000
                 });
             } else {
                 this.afDb.collection<CreateRoom>('rooms').add(payload)
                 .then((data) => {
-                    this.snackbar.open(`Room with name: ${payload.name} created!`, 'Undo', {
+                    this.snackbar.open(`Room with name: ${payload.name} created!`, 'OK', {
                         duration: 2000
                     });
                     this.router.navigate(['/rooms']);

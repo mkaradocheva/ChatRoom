@@ -27,6 +27,7 @@ export class RoomPostQuestionComponent implements OnInit {
         Validators.maxLength(150) 
       ] ]
     });
+
     this.route.params.subscribe((params: Params) => {
       this.roomName = params['name'];
     });
@@ -35,8 +36,6 @@ export class RoomPostQuestionComponent implements OnInit {
   postQuestion() {
     const text = this.questionForm.value.text;
     const currentUser = this.authService.getCurrentUser();
-
-    console.log(this.roomName)
 
     this.roomsService.addQuestion({ 
       text: text, 

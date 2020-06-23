@@ -15,7 +15,8 @@ export class RoomComponent implements OnInit {
     roomQuestionsSub: Subscription;
     roomName: string;
 
-    constructor(private route: ActivatedRoute, 
+    constructor(
+        private route: ActivatedRoute, 
         private roomService: RoomsService
         ){ }
 

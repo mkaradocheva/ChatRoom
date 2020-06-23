@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Question } from 'src/app/components/shared/models/question.model';
@@ -23,7 +23,7 @@ export class QuestionsService {
       private snackbar: MatSnackBar
       ){ }
 
-    fetchMyRooms(author: string) {
+    fetchMyQuestions(author: string) {
         this._myQuestionsSubscriptions.push(this.afDb.collection<Question>('questions', (ref) => ref
           .where('username', '==', author))
           .valueChanges()
@@ -38,7 +38,7 @@ export class QuestionsService {
       this.afDb.collection<Answer>('answers').add(payload)
       .then((data) => {
         this.fetchAnswersForQuestion(payload.question);
-        this.snackbar.open('Answer added!', 'Undo', {
+        this.snackbar.open('Answer added!', 'OK', {
           duration: 2000
         });
       })
