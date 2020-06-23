@@ -10,7 +10,7 @@ import { QuestionsService } from 'src/app/core/services/questions.service';
 })
 export class MyQuestionsComponent implements OnInit {
   private myQuestionsSubscription: Subscription;
-  private questions = [];
+  questions = [];
 
   constructor(
     private questionsService: QuestionsService,
